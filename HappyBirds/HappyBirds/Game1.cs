@@ -11,6 +11,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace HappyBirds
 {
+
+
+    public enum WhoPlaying { Player, AI, GAM }
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -22,9 +25,12 @@ namespace HappyBirds
         public static SlingShot slingShot;
         public static List<Bird> flyingbirds;
         public static Level level;
+        WhoPlaying whoPlaying = WhoPlaying.GAM;
 
+
+        GeneticAlgorithmManager GAManager;
         Player player;
-        AI ai;
+        //AI ai;
 
         Agent currentPlayer;
 
@@ -63,13 +69,9 @@ namespace HappyBirds
             flyingbirds = new List<Bird>();
             slingShot = new SlingShot(new Vector2(100, 600));
             level = new Level();
-
+            GAManager = new GeneticAlgorithmManager();
             player = new Player();
-            ai = new AI();
-
-            currentPlayer = player;
-
-
+            //ai = new AI();
 
             // TODO: use this.Content to load your game content here
         }
@@ -95,7 +97,21 @@ namespace HappyBirds
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            currentPlayer.Update(gameTime);
+            switch (whoPlaying)
+            {
+                case WhoPlaying.Player:
+                    player.Update(gameTime);
+                    break;
+                case WhoPlaying.AI:
+                    break;
+                case WhoPlaying.GAM:
+                    GAManager.Update(gameTime);
+                    break;
+                default:
+                    break;
+            }
+
+
             slingShot.Update(gameTime);
 
             for (int i = flyingbirds.Count; i-- > 0; )

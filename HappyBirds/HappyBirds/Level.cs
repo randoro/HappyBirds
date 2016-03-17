@@ -21,30 +21,45 @@ namespace HappyBirds
 
         public void CreateDefaultLevel()
         {
-            for (int i = 0; i < 2; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    blockList.Add(new Block(new Point(j + 10, i + 5)));
-                }
-            }
+            blockList.Clear();
 
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    blockList.Add(new Block(new Point(j + 15, i + 5)));
-                }
-            }
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    for (int j = 0; j < 5; j++)
+            //    {
+            //        blockList.Add(new Block(new Point(j + 10, i + 5)));
+            //    }
+            //}
 
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < 1; j++)
-                {
-                    blockList.Add(new Block(new Point(j + 2, i + 2)));
-                }
-            }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    for (int j = 0; j < 2; j++)
+            //    {
+            //        blockList.Add(new Block(new Point(j + 15, i + 5)));
+            //    }
+            //}
 
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    for (int j = 0; j < 1; j++)
+            //    {
+            //        blockList.Add(new Block(new Point(j + 2, i + 2)));
+            //    }
+            //}
+
+            blockList.Add(new Block(new Point(10, 10)));
+            blockList.Add(new Block(new Point(11, 10)));
+            blockList.Add(new Block(new Point(12, 9)));
+            blockList.Add(new Block(new Point(13, 9)));
+            blockList.Add(new Block(new Point(14, 8)));
+            blockList.Add(new Block(new Point(15, 8)));
+            blockList.Add(new Block(new Point(16, 8)));
+            blockList.Add(new Block(new Point(17, 8)));
+            blockList.Add(new Block(new Point(18, 8)));
+            blockList.Add(new Block(new Point(19, 9)));
+            blockList.Add(new Block(new Point(20, 9)));
+            blockList.Add(new Block(new Point(21, 10)));
+            blockList.Add(new Block(new Point(22, 10)));
 
             removedBlocks = 0;
         }

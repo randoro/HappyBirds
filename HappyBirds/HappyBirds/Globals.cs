@@ -12,7 +12,7 @@ namespace HappyBirds
         public const int windowX = 1280;
         public const int windowY = 720;
 
-        public const int BlockSize = 64;
+        public const int BlockSize = 32;
         public const int BigBirdSize = 32;
 
         public const float maxPower = 50f;
@@ -22,6 +22,7 @@ namespace HappyBirds
         public static SpriteFont font;
 
         public static Random rand = new Random();
+
 
     }
 }

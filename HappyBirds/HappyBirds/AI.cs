@@ -8,9 +8,18 @@ namespace HappyBirds
 {
     class AI : Agent
     {
+        public bool isDone { set; get; }
+
         public AI()
         {
+            CreateDefaultAI();
+        }
+
+        public void CreateDefaultAI()
+        {
             isAiming = true;
+            BirdsToThrow = 3;
+            isDone = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -28,6 +37,44 @@ namespace HappyBirds
             }
 
 
+        }
+
+        public void Shoot(Member gen)
+        {
+            if (Game1.slingShot.canShoot)
+            {
+                Vector2 newAngleVect;
+                float newPower;
+
+                switch (BirdsToThrow)
+                {
+                    case 0:
+                        isDone = true;
+                        break;
+                    case 1:
+                        newAngleVect = new Vector2(gen.ThirdAngleVectX, gen.ThirdAngleVectY);
+                        newPower = gen.ThirdPower;
+                        Game1.slingShot.SetVariables(newAngleVect, newPower);
+                        Game1.slingShot.ShootNew();
+                        break;
+                    case 2:
+                        newAngleVect = new Vector2(gen.SecondAngleVectX, gen.SecondAngleVectY);
+                        newPower = gen.SecondPower;
+                        Game1.slingShot.SetVariables(newAngleVect, newPower);
+                        Game1.slingShot.ShootNew();
+                        break;
+                    case 3:
+                        newAngleVect = new Vector2(gen.FirstAngleVectX, gen.FirstAngleVectY);
+                        newPower = gen.FirstPower;
+                        Game1.slingShot.SetVariables(newAngleVect, newPower);
+                        Game1.slingShot.ShootNew();
+                        break;
+                    default:
+                        break;
+                }
+
+                BirdsToThrow--;
+            }
         }
     }
 }

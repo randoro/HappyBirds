@@ -10,6 +10,8 @@ namespace HappyBirds
     {
         public bool isAiming { get; set; }
 
+        public int BirdsToThrow { get; set; }
+
         public abstract void Update(GameTime gameTime);
     }
 }

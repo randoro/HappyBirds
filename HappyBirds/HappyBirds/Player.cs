@@ -12,6 +12,8 @@ namespace HappyBirds
         public Player()
         {
             isAiming = true;
+            BirdsToThrow = 3;
+
         }
 
         public override void Update(GameTime gameTime)
@@ -20,9 +22,10 @@ namespace HappyBirds
             {
                 getPlayerInput(Game1.slingShot);
 
-                if (Controller.LeftClick)
+                if (Controller.LeftClick && BirdsToThrow > 0)
                 {
                     Game1.slingShot.ShootNew();
+                    BirdsToThrow--;
                 }
             }
         }
