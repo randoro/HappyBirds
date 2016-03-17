@@ -21,6 +21,7 @@ namespace HappyBirds
         public static Texture2D slingShotText;
         public static SlingShot slingShot;
         public static List<Bird> flyingbirds;
+        public static Level level;
 
         Player player;
         AI ai;
@@ -61,11 +62,12 @@ namespace HappyBirds
             slingShotText = Content.Load<Texture2D>("slingshot");
             flyingbirds = new List<Bird>();
             slingShot = new SlingShot(new Vector2(100, 600));
+            level = new Level();
 
             player = new Player();
             ai = new AI();
 
-            currentPlayer = ai;
+            currentPlayer = player;
 
 
 
@@ -101,12 +103,12 @@ namespace HappyBirds
                 flyingbirds[i].Update(gameTime);
                 if (flyingbirds[i].shouldBeRemoved)
                 {
-                    lock (flyingbirds)
-                    {
-                        flyingbirds.Remove(flyingbirds[i]);
-                    }
+                    flyingbirds.Remove(flyingbirds[i]);
                 }
             }
+
+            level.Update(gameTime);
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -128,6 +130,7 @@ namespace HappyBirds
                 b.Draw(spriteBatch);
             }
             slingShot.Draw(spriteBatch);
+            level.Draw(spriteBatch);
 
             spriteBatch.End();
 

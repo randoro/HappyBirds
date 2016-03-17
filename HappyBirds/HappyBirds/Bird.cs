@@ -12,6 +12,7 @@ namespace HappyBirds
         public Vector2 position { get; set; }
         protected Vector2 velocityVect;
         public bool shouldBeRemoved { get; protected set; }
+        public Rectangle collisionRect; 
 
         public Bird(Vector2 startPosition, Vector2 startAngleVect, float power)
         {

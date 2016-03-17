@@ -26,6 +26,8 @@ namespace HappyBirds
                 Game1.slingShot.SetVariables(newAngleVect, newPower);
                 Game1.slingShot.ShootNew();
             }
+
+
         }
     }
 }
