@@ -1,0 +1,6 @@
+D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\HappyBirds.exe
+D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\HappyBirds.pdb
+D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.csprojResolveAssemblyReference.cache
+D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.exe
+D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.pdb
