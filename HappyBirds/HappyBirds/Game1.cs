@@ -18,11 +18,23 @@ namespace HappyBirds
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        public static Texture2D slingShotText;
+        public static SlingShot slingShot;
+        public static List<Bird> flyingbirds;
+
+        Player player;
+        AI ai;
+
+        Agent currentPlayer;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = Globals.windowX; 
+            graphics.PreferredBackBufferHeight = Globals.windowY;
+            this.IsMouseVisible = true;
+
         }
 
         /// <summary>
@@ -46,6 +58,16 @@ namespace HappyBirds
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            slingShotText = Content.Load<Texture2D>("slingshot");
+            flyingbirds = new List<Bird>();
+            slingShot = new SlingShot(new Vector2(100, 600));
+
+            player = new Player();
+            ai = new AI();
+
+            currentPlayer = ai;
+
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -66,10 +88,25 @@ namespace HappyBirds
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            Controller.Update(gameTime);
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            currentPlayer.Update(gameTime);
+            slingShot.Update(gameTime);
+
+            for (int i = flyingbirds.Count; i-- > 0; )
+            {
+                flyingbirds[i].Update(gameTime);
+                if (flyingbirds[i].shouldBeRemoved)
+                {
+                    lock (flyingbirds)
+                    {
+                        flyingbirds.Remove(flyingbirds[i]);
+                    }
+                }
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -82,6 +119,18 @@ namespace HappyBirds
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+
+
+            foreach (Bird b in flyingbirds)
+            {
+                b.Draw(spriteBatch);
+            }
+            slingShot.Draw(spriteBatch);
+
+            spriteBatch.End();
+
 
             // TODO: Add your drawing code here
 
