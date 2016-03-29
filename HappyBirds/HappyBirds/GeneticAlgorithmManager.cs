@@ -39,7 +39,7 @@ namespace HappyBirds
     class GeneticAlgorithmManager
     {
 
-        const int generations = 400;
+        const int generations = 800;
         int currentGeneration = 0;
 
         int numberOfMembers = 20;

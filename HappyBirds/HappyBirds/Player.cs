@@ -11,9 +11,14 @@ namespace HappyBirds
     {
         public Player()
         {
+            ResetPlayer();
+
+        }
+
+        public void ResetPlayer()
+        {
             isAiming = true;
             BirdsToThrow = 3;
-
         }
 
         public override void Update(GameTime gameTime)
@@ -24,8 +29,10 @@ namespace HappyBirds
 
                 if (Controller.LeftClick && BirdsToThrow > 0)
                 {
-                    Game1.slingShot.ShootNew();
-                    BirdsToThrow--;
+                    if (Game1.slingShot.ShootNew())
+                    {
+                        BirdsToThrow--;
+                    }
                 }
             }
         }

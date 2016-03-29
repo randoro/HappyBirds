@@ -97,6 +97,14 @@ namespace HappyBirds
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+
+            if (Controller.KeyPressed(Keys.R))
+            {
+                player.ResetPlayer();
+                level.CreateDefaultLevel();
+            }
+
+
             switch (whoPlaying)
             {
                 case WhoPlaying.Player:

@@ -48,13 +48,16 @@ namespace HappyBirds
             this.power = power;
         }
 
-        public void ShootNew() 
+        public bool ShootNew() 
         {
             if (canShoot)
             {
                 canShoot = false;
                 Game1.flyingbirds.Add(new BigBird(position, angleVect, power));
+                return true;
             }
+
+            return false;
         }
     }
 }

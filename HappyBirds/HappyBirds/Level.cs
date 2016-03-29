@@ -61,6 +61,20 @@ namespace HappyBirds
             blockList.Add(new Block(new Point(21, 10)));
             blockList.Add(new Block(new Point(22, 10)));
 
+            blockList.Add(new Block(new Point(10, 15)));
+            blockList.Add(new Block(new Point(11, 15)));
+            blockList.Add(new Block(new Point(12, 15)));
+            blockList.Add(new Block(new Point(13, 15)));
+            blockList.Add(new Block(new Point(14, 15)));
+            blockList.Add(new Block(new Point(15, 14)));
+            blockList.Add(new Block(new Point(16, 14)));
+            blockList.Add(new Block(new Point(17, 14)));
+            blockList.Add(new Block(new Point(18, 13)));
+            blockList.Add(new Block(new Point(19, 13)));
+            blockList.Add(new Block(new Point(20, 13)));
+            blockList.Add(new Block(new Point(21, 13)));
+            blockList.Add(new Block(new Point(22, 13)));
+
             removedBlocks = 0;
         }
 
