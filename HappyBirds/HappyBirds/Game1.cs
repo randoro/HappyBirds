@@ -13,7 +13,7 @@ namespace HappyBirds
 {
 
 
-    public enum WhoPlaying { Player, AI, GAM }
+    public enum WhoPlaying { Player, GAM }
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -25,7 +25,7 @@ namespace HappyBirds
         public static SlingShot slingShot;
         public static List<Bird> flyingbirds;
         public static Level level;
-        WhoPlaying whoPlaying = WhoPlaying.GAM;
+        WhoPlaying whoPlaying = WhoPlaying.Player;
 
 
         GeneticAlgorithmManager GAManager;
@@ -66,6 +66,7 @@ namespace HappyBirds
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             slingShotText = Content.Load<Texture2D>("slingshot");
+            Globals.font = Content.Load<SpriteFont>("font");
             flyingbirds = new List<Bird>();
             slingShot = new SlingShot(new Vector2(100, 600));
             level = new Level();
@@ -98,10 +99,45 @@ namespace HappyBirds
                 this.Exit();
 
 
+            if (Controller.KeyPressed(Keys.P))
+            {
+                GAManager.PrintThings();
+            }
+
+            if (Controller.KeyPressed(Keys.Q))
+            {
+                GAManager.playall = !GAManager.playall;
+            }
+
+
             if (Controller.KeyPressed(Keys.R))
             {
+                if (whoPlaying.Equals(WhoPlaying.Player))
+                {
+                    flyingbirds.Clear();
+                    player.ResetPlayer();
+                    level.CreateDefaultLevel();
+                }
+            }
+
+            if (Controller.KeyPressed(Keys.E))
+            {
+                flyingbirds.Clear();
                 player.ResetPlayer();
                 level.CreateDefaultLevel();
+                GAManager = new GeneticAlgorithmManager();
+                switch (whoPlaying)
+                {
+                    case WhoPlaying.Player:
+                        whoPlaying = WhoPlaying.GAM;
+                        break;
+                    case WhoPlaying.GAM:
+                        whoPlaying = WhoPlaying.Player;
+                        break;
+                    default:
+                        break;
+                }
+                
             }
 
 
@@ -109,8 +145,6 @@ namespace HappyBirds
             {
                 case WhoPlaying.Player:
                     player.Update(gameTime);
-                    break;
-                case WhoPlaying.AI:
                     break;
                 case WhoPlaying.GAM:
                     GAManager.Update(gameTime);
@@ -146,8 +180,7 @@ namespace HappyBirds
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
-
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
             foreach (Bird b in flyingbirds)
             {
@@ -155,6 +188,78 @@ namespace HappyBirds
             }
             slingShot.Draw(spriteBatch);
             level.Draw(spriteBatch);
+
+
+            Vector2 offset = new Vector2(30, 20);
+            spriteBatch.DrawString(Globals.font, "GA Current Generation:" + GAManager.currentGeneration, offset, Color.White);
+            offset.Y += 20;
+            spriteBatch.DrawString(Globals.font, "GA Current Member:" + GAManager.numberOfMembersTried, offset, Color.White);
+            offset.Y += 20;
+            switch (whoPlaying)
+            {
+                case WhoPlaying.Player:
+                    spriteBatch.DrawString(Globals.font, "Birds Left:" + player.BirdsToThrow, offset, Color.White);
+                    offset.Y += 20;
+                    break;
+                case WhoPlaying.GAM:
+                    spriteBatch.DrawString(Globals.font, "Birds Left:" + GAManager.ai.BirdsToThrow, offset, Color.White);
+                    offset.Y += 20;
+                    break;
+                default:
+                    break;
+            }
+            spriteBatch.DrawString(Globals.font, "Current Fitness:" + level.removedBlocks, offset, Color.White);
+            offset.Y += 20;
+            spriteBatch.DrawString(Globals.font, "Play all:" + GAManager.playall, offset, Color.White);
+            offset.Y += 20;
+
+
+            Vector2 offset2 = new Vector2(800, 20);
+            spriteBatch.DrawString(Globals.font, "GA Member : Fitness", offset2, Color.White);
+            offset2.Y += 20;
+            for (int i = 0; i < GAManager.memberList.Count; i++)
+            {
+                Color textColor = Color.White;
+                if (GAManager.numberOfMembersTried == i)
+                {
+                    textColor = Color.Red;
+                }
+                spriteBatch.DrawString(Globals.font, i+ " : " + GAManager.memberList[i].fitness, offset2, textColor);
+                offset2.Y += 20;
+            }
+
+
+            Vector2 offset3 = new Vector2(200, 480);
+            if (GAManager.currentGeneration > 0)
+            {
+                spriteBatch.DrawString(Globals.font, "Last generation's(Gen." + (GAManager.currentGeneration - 1) + ") top fitness: " + GAManager.lastGenTopFitness, offset3, Color.White);
+                offset3.Y += 20;
+                spriteBatch.DrawString(Globals.font, "Last generation's(Gen." + (GAManager.currentGeneration - 1) + ") average fitness: " + GAManager.lastGenAverageFitness, offset3, Color.White);
+                offset3.Y += 20;
+                spriteBatch.DrawString(Globals.font, "Last generation's(Gen." + (GAManager.currentGeneration - 1) + ") median fitness: " + GAManager.lastGenMedianFitness, offset3, Color.White);
+                offset3.Y += 20;
+                spriteBatch.DrawString(Globals.font, "Last generation's(Gen." + (GAManager.currentGeneration - 1) + ") lowest fitness: " + GAManager.lastGenLowestFitness, offset3, Color.White);
+                offset3.Y += 20;
+                offset3.Y += 20;
+            }
+            else
+            {
+                offset3.Y += 20;
+                offset3.Y += 20;
+                offset3.Y += 20;
+            }
+            spriteBatch.DrawString(Globals.font, "Controls: ", offset3, Color.White);
+            offset3.Y += 20;
+            spriteBatch.DrawString(Globals.font, "E - Change between PlayerControlled/GAControlled. (This resets GAManager)", offset3, Color.White);
+            offset3.Y += 20;
+            spriteBatch.DrawString(Globals.font, "R - Restart level. (For players)", offset3, Color.White);
+            offset3.Y += 20;
+            spriteBatch.DrawString(Globals.font, "Mouse - Used to aim the slingshot. (For players)", offset3, Color.White);
+            offset3.Y += 20;
+            spriteBatch.DrawString(Globals.font, "P - Prints a lot of stats to Console (Most likely blocks mainthread).", offset3, Color.White);
+            offset3.Y += 20;
+            spriteBatch.DrawString(Globals.font, "Q - Toggle between GAManager playing all members, or just modified/changed members.", offset3, Color.White);
+            offset3.Y += 20;
 
             spriteBatch.End();
 

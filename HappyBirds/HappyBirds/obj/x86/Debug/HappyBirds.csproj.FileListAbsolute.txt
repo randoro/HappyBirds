@@ -5,3 +5,4 @@ D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\Microsoft.Xna.Frame
 D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.exe
 D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.pdb
 D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\Content\slingshot.xnb
+D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\Content\font.xnb

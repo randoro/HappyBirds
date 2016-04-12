@@ -43,24 +43,46 @@ namespace HappyBirds
             this.fitness = otherMember.fitness;
         }
 
-        public void CopyPartStats(Member otherMember, int part)
+        public void CrossPartStats(Member otherMember, int part)
         {
+            float tempAngleX = 0f;
+            float tempAngleY = 0f;
+            float power = 0f;
+
             switch (part)
             {
                 case 0:
+                    tempAngleX = this.FirstAngleVectX;
+                    tempAngleY = this.FirstAngleVectY;
+                    power = this.FirstPower;
                     this.FirstAngleVectX = otherMember.FirstAngleVectX;
                     this.FirstAngleVectY = otherMember.FirstAngleVectY;
                     this.FirstPower = otherMember.FirstPower;
+                    otherMember.FirstAngleVectX = tempAngleX;
+                    otherMember.FirstAngleVectY = tempAngleY;
+                    otherMember.FirstPower = power;
                     break;
                 case 1:
+                    tempAngleX = this.SecondAngleVectX;
+                    tempAngleY = this.SecondAngleVectY;
+                    power = this.SecondPower;
                     this.SecondAngleVectX = otherMember.SecondAngleVectX;
                     this.SecondAngleVectY = otherMember.SecondAngleVectY;
                     this.SecondPower = otherMember.SecondPower;
+                    otherMember.SecondAngleVectX = tempAngleX;
+                    otherMember.SecondAngleVectY = tempAngleY;
+                    otherMember.SecondPower = power;
                     break;
                 case 2:
+                    tempAngleX = this.ThirdAngleVectX;
+                    tempAngleY = this.ThirdAngleVectY;
+                    power = this.ThirdPower;
                     this.ThirdAngleVectX = otherMember.ThirdAngleVectX;
                     this.ThirdAngleVectY = otherMember.ThirdAngleVectY;
                     this.ThirdPower = otherMember.ThirdPower;
+                    otherMember.ThirdAngleVectX = tempAngleX;
+                    otherMember.ThirdAngleVectY = tempAngleY;
+                    otherMember.ThirdPower = power;
                     break;
                 default:
                     break;
