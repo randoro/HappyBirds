@@ -6,3 +6,11 @@ D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.exe
 D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.pdb
 D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\Content\slingshot.xnb
 D:\SourceTree\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\Content\font.xnb
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\Content\slingshot.xnb
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\Content\font.xnb
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\HappyBirds.exe
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\bin\x86\Debug\HappyBirds.pdb
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.csprojResolveAssemblyReference.cache
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.exe
+C:\Users\Spellabbet\Documents\HappyBirds\HappyBirds\HappyBirds\obj\x86\Debug\HappyBirds.pdb
